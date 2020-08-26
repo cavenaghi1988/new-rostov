@@ -31,7 +31,7 @@ export default new Vuex.Store({
       try {
         commit("loading", false);
         const data = await axios
-          .get("http://worldtimeapi.org/api/timezone/Europe/Moscow");
+          .get("https://worldtimeapi.org/api/timezone/Europe/Moscow");
         commit("loading", true);
         let now = DateTime.fromISO(data.data.datetime);
         commit("getTime", now);
