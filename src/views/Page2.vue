@@ -179,7 +179,7 @@ export default {
     }, 500);
   },
   computed: {
-    ...mapGetters(["time", "loading"]),
+    ...mapGetters(["time"]),
     ...mapActions(["times"])
   },
   methods: {
@@ -193,7 +193,6 @@ export default {
     },
     resize() {
       const size = document.querySelector("body");
-      console.log(this.show);
       if (size.clientWidth < 980) {
         this.show = false;
       } else {
@@ -243,9 +242,9 @@ export default {
         font-weight: bold;
         margin-top: 20px;
         color: #fafbfc;
-        font-family: sans-serif;
+        font-family: RussoOne, sans-serif;
         font-size: 3.6rem;
-        font-weight: 400;
+        font-weight: normal;
         margin-right: 30px;
         transform: scale(0.97);
         transition: transform 500ms;

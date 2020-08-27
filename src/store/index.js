@@ -10,7 +10,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     time: [],
-    loading: false
+    loading: true
   },
   getters: {
     time: state => state.time,
@@ -29,12 +29,11 @@ export default new Vuex.Store({
       commit
     }) {
       try {
-        commit("loading", false);
         const data = await axios
           .get("https://worldtimeapi.org/api/timezone/Europe/Moscow");
-        commit("loading", true);
         let now = DateTime.fromISO(data.data.datetime);
         commit("getTime", now);
+        commit("loading", true);
       } catch (err) {
         console.log(err);
         commit("loading", true);

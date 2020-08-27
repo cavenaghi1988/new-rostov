@@ -17,6 +17,7 @@ export default {
   },
   computed: {
     ...mapActions(["times"])
+    // ...mapGetters(["loading"])
   },
   methods: {
     res() {

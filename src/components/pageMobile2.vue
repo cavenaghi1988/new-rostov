@@ -20,16 +20,18 @@
 
     </div>
     <carousel-3d
-      :controls-visible="true"
+      :controls-visible="false"
       :clickable="false"
       :width="202"
       :height="224"
       :display="7"
+      :space="200"
+      :startIndex="0"
     >
       <slide
         v-for="obj in objs"
         :key="obj.id"
-        :index="obj.id"
+        :index="obj.id-1"
       >
         <div
           v-if="
@@ -165,16 +167,6 @@ export default {
           end: 21,
           link: "https://www.youtube.com/embed/paXfJGUmku4",
           text: "Название вебинара № 7"
-        },
-
-        {
-          id: 8,
-          day: 27,
-          play: false,
-          begin: 0,
-          end: 0,
-          link: "/",
-          text: ""
         }
       ]
     };
@@ -197,6 +189,19 @@ export default {
     close() {
       this.see = false;
     }
+    // indexScroll() {
+    //   let res = 0;
+    //   for (key in this.objs) {
+    //     if (
+    //       this.objs[key][day] == time.c.day &&
+    //       this.objs[key][begin] <= time.c.hour &&
+    //       this.objs[key][end] > time.c.hour
+    //     ) {
+    //       res = this.objs[key][id];
+    //     }
+    //     return res;
+    //   }
+    // }
   }
 };
 </script>
@@ -216,13 +221,15 @@ export default {
     left: 0%;
     transform: translate(-100%);
     transition: transform 1s;
+    z-index: 1000;
 
     &__link {
       width: 100%;
       height: 24.95%;
       text-decoration: none;
       font-size: 2rem;
-      font-weight: 700;
+      font-family: RussoOne, sans-serif;
+      font-weight: normal;
     }
     &__text {
       width: 100%;
@@ -263,7 +270,7 @@ export default {
     position: absolute;
     top: 1%;
     left: 2%;
-    z-index: 6;
+    z-index: 1001;
     cursor: pointer;
 
     .bar1,
@@ -331,6 +338,7 @@ export default {
     background-size: contain;
     background-repeat: no-repeat;
     transition: transform 1s;
+    transform: scale(0.8);
     cursor: pointer;
 
     &:hover {

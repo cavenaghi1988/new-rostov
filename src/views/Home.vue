@@ -17,10 +17,7 @@
       v-if="desk"
       class="desk"
     >
-      <img
-        src="../assets/city.png"
-        alt="city"
-      >
+
       <div id="nav">
         <ul>
           <router-link to="/">
@@ -34,89 +31,33 @@
           </router-link>
         </ul>
       </div>
-      <div class="box1">
-        <div class="car1"></div>
+      <div
+        v-for="(obj,i) in objs"
+        :key="i"
+        class="items"
+      >
+        <div :class="obj.name1">
+          <div :class="obj.name2"></div>
+        </div>
+        <div
+          v-on:mouseover="obj.over"
+          v-on:mouseleave="obj.leave"
+          v-on:click="obj.click"
+          :class="obj.name4"
+        ></div>
+        <div
+          v-on:mouseover="obj.over"
+          v-on:mouseleave="obj.leave"
+          v-on:click="obj.click"
+          :class="obj.name3"
+        ></div>
       </div>
-      <div
-        v-on:mouseover="mouseover1"
-        v-on:mouseleave="mouseleave1"
-        v-on:click="cl1"
-        class="window1"
-      ></div>
-      <div
-        v-on:mouseover="mouseover1"
-        v-on:mouseleave="mouseleave1"
-        v-on:click="cl1"
-        class="visible1"
-      ></div>
-
-      <div class="box2">
-        <div class="car2"></div>
-      </div>
-      <div
-        v-on:mouseover="mouseover2"
-        v-on:mouseleave="mouseleave2"
-        v-on:click="cl2"
-        class="window2"
-      ></div>
-      <div
-        v-on:mouseover="mouseover2"
-        v-on:mouseleave="mouseleave2"
-        v-on:click="cl2"
-        class="visible2"
-      ></div>
-      <div class="box3">
-        <div class="car3"></div>
-      </div>
-      <div
-        v-on:mouseover="mouseover3"
-        v-on:mouseleave="mouseleave3"
-        v-on:click="cl3"
-        class="window3"
-      ></div>
-      <div
-        v-on:mouseover="mouseover3"
-        v-on:mouseleave="mouseleave3"
-        v-on:click="cl3"
-        class="visible3"
-      ></div>
-      <div class="box4">
-        <div class="car4"></div>
-      </div>
-      <div
-        v-on:mouseover="mouseover4"
-        v-on:mouseleave="mouseleave4"
-        v-on:click="cl4"
-        class="window4"
-      ></div>
-      <div
-        v-on:mouseover="mouseover4"
-        v-on:mouseleave="mouseleave4"
-        v-on:click="cl4"
-        class="visible4"
-      ></div>
-      <div class="box5">
-        <div class="car5"></div>
-      </div>
-      <div
-        v-on:mouseover="mouseover5"
-        v-on:mouseleave="mouseleave5"
-        v-on:click="cl5"
-        class="window5"
-      ></div>
-      <div
-        v-on:mouseover="mouseover5"
-        v-on:mouseleave="mouseleave5"
-        v-on:click="cl5"
-        class="visible5"
-      ></div>
     </div>
   </div>
 </template>
 
 <script>
 import Mobile from "../components/mobile.vue";
-import { mapGetters } from "vuex";
 export default {
   name: "Home",
   components: {
@@ -128,15 +69,59 @@ export default {
       this.resize();
     }, 500);
   },
+
   data() {
     return {
-      iframeLoaded: false,
       desk: true,
-      loading: true
+      loading: true,
+      objs: [
+        {
+          name1: "box1",
+          name2: "car1",
+          name3: "visible1",
+          name4: "window1",
+          over: this.mouseover1,
+          leave: this.mouseleave1,
+          click: this.cl1
+        },
+        {
+          name1: "box2",
+          name2: "car2",
+          name3: "visible2",
+          name4: "window2",
+          over: this.mouseover2,
+          leave: this.mouseleave2,
+          click: this.cl2
+        },
+        {
+          name1: "box3",
+          name2: "car3",
+          name3: "visible3",
+          name4: "window3",
+          over: this.mouseover3,
+          leave: this.mouseleave3,
+          click: this.cl3
+        },
+        {
+          name1: "box4",
+          name2: "car4",
+          name3: "visible4",
+          name4: "window4",
+          over: this.mouseover4,
+          leave: this.mouseleave4,
+          click: this.cl4
+        },
+        {
+          name1: "box5",
+          name2: "car5",
+          name3: "visible5",
+          name4: "window5",
+          over: this.mouseover5,
+          leave: this.mouseleave5,
+          click: this.cl5
+        }
+      ]
     };
-  },
-  computed: {
-    ...mapGetters(["time", "loading"])
   },
   methods: {
     loader() {
@@ -144,17 +129,10 @@ export default {
         this.loading = false;
       }, 1000);
     },
-    iframeLoad(e) {
-      if (e.timeStamp < 10000) {
-        this.iframeLoaded = true;
-      }
-    },
     getPage(select, link, tar) {
       const item = document.querySelector(select);
       if (item.offsetLeft >= tar.target.offsetLeft - 30) {
-        setTimeout(() => {
-          this.$router.push(link);
-        }, 1000);
+        this.$router.push(link);
       }
     },
     cl1(e) {
@@ -229,17 +207,14 @@ export default {
 .main {
   width: 100%;
   height: 100vh;
-  background-image: url(../assets/smoke_copy.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 
   .desk {
     width: 100%;
     height: 100%;
-    position: absolute;
-    bottom: 0%;
-    left: 0%;
+    background-image: url(../assets/town.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 139% 100%;
 
     #nav {
       width: 100%;
@@ -265,9 +240,9 @@ export default {
         font-weight: bold;
         margin-top: 20px;
         color: #fafbfc;
-        font-family: sans-serif;
+        font-family: RussoOne, sans-serif;
         font-size: 3.6rem;
-        font-weight: 400;
+        font-weight: normal;
         margin-right: 30px;
         transform: scale(0.97);
         transition: transform 500ms;
@@ -282,11 +257,6 @@ export default {
       }
     }
 
-    img {
-      width: 100%;
-      height: 100%;
-    }
-
     .box1 {
       width: 6%;
       height: 5.6%;
@@ -296,7 +266,7 @@ export default {
       overflow: hidden;
       opacity: 1;
       transform: scale(1);
-      transition: left 1s, transform 2s;
+      transition: left 0.5s, transform 1s;
       z-index: 1;
       cursor: pointer;
 
@@ -317,7 +287,7 @@ export default {
     .box1.out {
       left: 16%;
       transform: scale(1);
-      transition: left 2s, transform 1s;
+      transition: left 1s, transform 0.5s;
     }
 
     .window1 {
@@ -326,9 +296,9 @@ export default {
       position: absolute;
       background-image: url(../assets/garage5.png);
       background-repeat: no-repeat;
-      background-position: left;
-      background-size: contain;
-      left: 22.8%;
+      background-position: center;
+      background-size: cover;
+      left: 22.7%;
       bottom: 56%;
       z-index: 0;
       cursor: pointer;
@@ -338,22 +308,22 @@ export default {
       width: 3.4%;
       height: 13.6%;
       position: absolute;
-      left: 22.8%;
+      left: 22.7%;
       bottom: 56%;
       z-index: 4;
       cursor: pointer;
     }
 
     .box2 {
-      width: 4.5%;
-      height: 4.8%;
+      width: 9.5%;
+      height: 9.8%;
       position: absolute;
-      left: 27.6%;
-      top: 50%;
+      left: 24.6%;
+      top: 47%;
       overflow: hidden;
       opacity: 1;
       transform: scale(1);
-      transition: left 1s, transform 2s;
+      transition: left 0.5s, transform 1s;
       z-index: 1;
       cursor: pointer;
 
@@ -367,35 +337,35 @@ export default {
       }
     }
     .box2.active {
-      left: 36%;
+      left: 31%;
       transform: scale(0);
     }
 
     .box2.out {
-      left: 27.6%;
+      left: 24.6%;
       transform: scale(1);
-      transition: left 2s, transform 1s;
+      transition: left 1s, transform 0.5s;
     }
 
     .window2 {
-      width: 7%;
-      height: 8.7%;
+      width: 6%;
+      height: 6.7%;
       position: absolute;
       background-image: url(../assets/garage4.png);
       background-repeat: no-repeat;
       background-position: center;
-      background-size: contain;
-      left: 34.4%;
-      bottom: 43.3%;
+      background-size: cover;
+      left: 32.9%;
+      bottom: 44.9%;
       z-index: 0;
       cursor: pointer;
     }
     .visible2 {
-      width: 7%;
-      height: 8.7%;
+      width: 6%;
+      height: 6.7%;
       position: absolute;
-      left: 34.4%;
-      bottom: 43.3%;
+      left: 32.4%;
+      bottom: 44.9%;
       z-index: 4;
       cursor: pointer;
     }
@@ -408,7 +378,7 @@ export default {
       overflow: hidden;
       opacity: 1;
       transform: scale(1);
-      transition: left 1s, transform 2s;
+      transition: left 0.5s, transform 1s;
       z-index: 1;
       cursor: pointer;
 
@@ -422,35 +392,35 @@ export default {
       }
     }
     .box3.active {
-      left: 46%;
+      left: 44%;
       transform: scale(0);
     }
 
     .box3.out {
       left: 53%;
       transform: scale(1);
-      transition: left 2s, transform 1s;
+      transition: left 1s, transform 0.5s;
     }
 
     .window3 {
-      width: 8%;
-      height: 8%;
+      width: 6.5%;
+      height: 6.5%;
       position: absolute;
       background-image: url(../assets/garage3.png);
       background-repeat: no-repeat;
       background-position: left;
-      background-size: contain;
-      left: 47%;
-      bottom: 52%;
+      background-size: cover;
+      left: 43.8%;
+      bottom: 53%;
       z-index: 0;
       cursor: pointer;
     }
     .visible3 {
-      width: 8%;
-      height: 8%;
+      width: 6.5%;
+      height: 6.5%;
       position: absolute;
-      left: 47%;
-      bottom: 52%;
+      left: 43.8%;
+      bottom: 53%;
       z-index: 4;
       cursor: pointer;
     }
@@ -458,12 +428,12 @@ export default {
       width: 6.5%;
       height: 3.9%;
       position: absolute;
-      left: 58%;
-      top: 33%;
+      left: 53%;
+      top: 34%;
       overflow: hidden;
       opacity: 1;
       transform: scale(1);
-      transition: left 1s, transform 2s;
+      transition: left 0.5s, transform 1s;
       z-index: 1;
       cursor: pointer;
 
@@ -477,34 +447,34 @@ export default {
       }
     }
     .box4.active {
-      left: 68%;
+      left: 60%;
       transform: scale(0);
     }
 
     .box4.out {
-      left: 58%;
+      left: 53%;
       transform: scale(1);
-      transition: left 2s, transform 1s;
+      transition: left 1s, transform 0.5s;
     }
 
     .window4 {
-      width: 10%;
-      height: 13.5%;
+      width: 8%;
+      height: 13%;
       position: absolute;
       background-image: url(../assets/garage2.png);
       background-repeat: no-repeat;
       background-position: center;
-      background-size: contain;
-      left: 66%;
+      background-size: cover;
+      left: 60.6%;
       bottom: 56%;
       z-index: 0;
       cursor: pointer;
     }
     .visible4 {
-      width: 10%;
-      height: 13.5%;
+      width: 8%;
+      height: 11%;
       position: absolute;
-      left: 66%;
+      left: 60.6%;
       bottom: 56%;
       z-index: 4;
       cursor: pointer;
@@ -513,12 +483,12 @@ export default {
       width: 6.5%;
       height: 5%;
       position: absolute;
-      left: 88%;
-      top: 42.5%;
+      left: 80%;
+      top: 44.5%;
       overflow: hidden;
       opacity: 1;
       transform: scale(1);
-      transition: left 1s, transform 2s;
+      transition: left 0.5s, transform 1s;
       z-index: 1;
       cursor: pointer;
 
@@ -532,35 +502,35 @@ export default {
       }
     }
     .box5.active {
-      left: 77.7%;
+      left: 70.9%;
       transform: scale(0);
     }
 
     .box5.out {
-      left: 88%;
+      left: 80%;
       transform: scale(1);
-      transition: left 2s, transform 1s;
+      transition: left 1s, transform 0.5s;
     }
 
     .window5 {
-      width: 8.7%;
-      height: 10%;
+      width: 7.6%;
+      height: 9%;
       position: absolute;
       background-image: url(../assets/garage1.png);
       background-repeat: no-repeat;
       background-position: center;
-      background-size: contain;
-      left: 77.9%;
+      background-size: cover;
+      left: 70.9%;
       /* top: 21.5%; */
       bottom: 48.6%;
       z-index: 0;
       cursor: pointer;
     }
     .visible5 {
-      width: 8.7%;
-      height: 10%;
+      width: 7.6%;
+      height: 9%;
       position: absolute;
-      left: 77.9%;
+      left: 70.9%;
       bottom: 48.6%;
       z-index: 4;
       cursor: pointer;

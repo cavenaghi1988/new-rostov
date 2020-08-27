@@ -68,124 +68,128 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.mobile {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  .menu {
+@media (max-width: 980px), screen and (orientation: portrait) {
+  .mobile {
     width: 100%;
-    height: 30%;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    transform: translate(-100%);
-    transition: transform 1s;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    &__link {
+    .menu {
       width: 100%;
-      height: 24.95%;
-      text-decoration: none;
-      font-size: 2rem;
-      font-weight: 700;
-    }
-    &__text {
-      width: 100%;
-      height: 24.95%;
-      background-color: #1d3f72;
-      box-shadow: 0px 0px 16px gray;
-      border-radius: 2px;
-      z-index: 3;
-      border-top: 2px solid;
-      border-bottom: 2px solid;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #ffffff;
-      margin-top: 4px;
+      height: 30%;
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      transform: translate(-100%);
+      transition: transform 1s;
+      z-index: 2000;
 
-      &:last-child {
-        border-bottom: none;
+      &__link {
+        width: 100%;
+        height: 24.95%;
+        text-decoration: none;
+        font-family: RussoOne, sans-serif;
+        font-size: 2rem;
+        font-weight: normal;
+      }
+      &__text {
+        width: 100%;
+        height: 24.95%;
+        background-color: #1d3f72;
+        box-shadow: 0px 0px 16px gray;
+        border-radius: 2px;
+        z-index: 3;
+        border-top: 2px solid;
+        border-bottom: 2px solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        margin-top: 4px;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+      .menu_text span {
+        font-size: 2rem;
+        font-weight: 700;
       }
     }
-    .menu_text span {
-      font-size: 2rem;
-      font-weight: 700;
+    .menu.show {
+      transform: translate(0%);
     }
-  }
-  .menu.show {
-    transform: translate(0%);
-  }
 
-  .link {
-    width: 64%;
-    height: 8.5%;
-  }
-
-  .btn {
-    width: 36px;
-    height: 51px;
-    position: absolute;
-    top: 1%;
-    left: 2%;
-    z-index: 6;
-    cursor: pointer;
-
-    .bar1,
-    .bar2,
-    .bar3 {
+    .link {
       width: 100%;
-      height: 5px;
-      background-color: #ffffff;
-      margin: 6px 0;
-      transition: 0.4s;
+      height: 15%;
     }
 
-    .bar1.change {
-      transform: rotate(-45deg) translate(-9px, 6px);
+    .btn {
+      width: 36px;
+      height: 51px;
+      position: absolute;
+      top: 1%;
+      left: 2%;
+      z-index: 10000;
+      cursor: pointer;
+
+      .bar1,
+      .bar2,
+      .bar3 {
+        width: 100%;
+        height: 5px;
+        background-color: #ffffff;
+        margin: 6px 0;
+        transition: 0.4s;
+      }
+
+      .bar1.change {
+        transform: rotate(-45deg) translate(-9px, 6px);
+      }
+
+      .bar2.change {
+        opacity: 0;
+      }
+
+      .bar3.change {
+        transform: rotate(45deg) translate(-8px, -8px);
+      }
     }
 
-    .bar2.change {
-      opacity: 0;
-    }
+    .obj {
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      transform: scale(0.9);
+      cursor: pointer;
+      transition: transform 1s;
+      margin-top: 40px;
 
-    .bar3.change {
-      transform: rotate(45deg) translate(-8px, -8px);
+      &:hover {
+        transform: scale(1);
+      }
     }
-  }
-
-  .obj {
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    transform: scale(0.9);
-    cursor: pointer;
-    transition: transform 1s;
-    margin-top: 40px;
-
-    &:hover {
-      transform: scale(1);
+    .obj1 {
+      background-image: url(../assets/obj1.png);
     }
-  }
-  .obj1 {
-    background-image: url(../assets/obj1.png);
-  }
-  .obj2 {
-    background-image: url(../assets/obj2.png);
-  }
-  .obj3 {
-    background-image: url(../assets/obj3.png);
-  }
-  .obj4 {
-    background-image: url(../assets/obj4.png);
-  }
-  .obj5 {
-    background-image: url(../assets/obj5.png);
+    .obj2 {
+      background-image: url(../assets/obj2.png);
+    }
+    .obj3 {
+      background-image: url(../assets/obj3.png);
+    }
+    .obj4 {
+      background-image: url(../assets/obj4.png);
+    }
+    .obj5 {
+      background-image: url(../assets/obj5.png);
+    }
   }
 }
 </style>
