@@ -31,6 +31,10 @@
           </router-link>
         </ul>
       </div>
+
+      <!-- <div class="city">
+        <div class="block"> -->
+
       <div
         v-for="(obj,i) in objs"
         :key="i"
@@ -52,6 +56,8 @@
           :class="obj.name3"
         ></div>
       </div>
+      <!-- </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -192,6 +198,16 @@ export default {
     mouseleave5() {
       this.getLeaveMouse(".box5");
     },
+    // bgResize() {
+    //   const size = document.querySelector("body");
+    //   const city = document.querySelector(".city");
+
+    //   let h = size.clientHeight;
+    //   let w = size.clientWidth;
+
+    //    city.style.width = (w / 1920) * 100 + "%";
+    //    city.style.height = (h / 1080) * 100 + "%";
+    // },
     resize() {
       const size = document.querySelector("body");
       if (size.clientWidth < 980) {
@@ -207,14 +223,25 @@ export default {
 .main {
   width: 100%;
   height: 100vh;
+  background-image: url(../assets/smoke_copy.png);
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
 
   .desk {
     width: 100%;
     height: 100%;
+    min-width: 1200px;
+    min-height: 660px;
     background-image: url(../assets/town.png);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 139% 100%;
+    background-size: 150% 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: relative;
 
     #nav {
       width: 100%;
@@ -257,11 +284,34 @@ export default {
       }
     }
 
+    /* .city {
+      width: 100%;
+      height: 90%;
+       min-width: 1280px;
+      min-height: 650px; 
+       max-width: 1920px;
+      max-height: 1003px; 
+      background-image: url(../assets/city_new.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: fixed;
+      bottom: 0%;
+      left: 50%;
+      transform: translate(-50%);
+
+      .block {
+        width: 77%;
+        height: 29%;
+        position: fixed;
+        left: 20.5%;
+        top: 29%; */
+
     .box1 {
       width: 6%;
       height: 5.6%;
       position: absolute;
-      left: 16%;
+      left: 14%;
       top: 32%;
       overflow: hidden;
       opacity: 1;
@@ -269,7 +319,6 @@ export default {
       transition: left 0.5s, transform 1s;
       z-index: 1;
       cursor: pointer;
-
       .car1 {
         width: 100%;
         height: 100%;
@@ -280,16 +329,14 @@ export default {
       }
     }
     .box1.active {
-      left: 21%;
+      left: 19%;
       transform: scale(0);
     }
-
     .box1.out {
-      left: 16%;
+      left: 14%;
       transform: scale(1);
       transition: left 1s, transform 0.5s;
     }
-
     .window1 {
       width: 3.4%;
       height: 13.6%;
@@ -297,23 +344,21 @@ export default {
       background-image: url(../assets/garage5.png);
       background-repeat: no-repeat;
       background-position: center;
-      background-size: cover;
-      left: 22.7%;
+      background-size: contain;
+      left: 20.7%;
       bottom: 56%;
       z-index: 0;
       cursor: pointer;
     }
-
     .visible1 {
       width: 3.4%;
       height: 13.6%;
       position: absolute;
-      left: 22.7%;
+      left: 20.7%;
       bottom: 56%;
       z-index: 4;
       cursor: pointer;
     }
-
     .box2 {
       width: 9.5%;
       height: 9.8%;
@@ -326,7 +371,6 @@ export default {
       transition: left 0.5s, transform 1s;
       z-index: 1;
       cursor: pointer;
-
       .car2 {
         width: 100%;
         height: 100%;
@@ -340,13 +384,11 @@ export default {
       left: 31%;
       transform: scale(0);
     }
-
     .box2.out {
       left: 24.6%;
       transform: scale(1);
       transition: left 1s, transform 0.5s;
     }
-
     .window2 {
       width: 6%;
       height: 6.7%;
@@ -354,8 +396,8 @@ export default {
       background-image: url(../assets/garage4.png);
       background-repeat: no-repeat;
       background-position: center;
-      background-size: cover;
-      left: 32.9%;
+      background-size: contain;
+      left: 31.9%;
       bottom: 44.9%;
       z-index: 0;
       cursor: pointer;
@@ -364,7 +406,7 @@ export default {
       width: 6%;
       height: 6.7%;
       position: absolute;
-      left: 32.4%;
+      left: 31.4%;
       bottom: 44.9%;
       z-index: 4;
       cursor: pointer;
@@ -381,7 +423,6 @@ export default {
       transition: left 0.5s, transform 1s;
       z-index: 1;
       cursor: pointer;
-
       .car3 {
         width: 100%;
         height: 100%;
@@ -395,13 +436,11 @@ export default {
       left: 44%;
       transform: scale(0);
     }
-
     .box3.out {
       left: 53%;
       transform: scale(1);
       transition: left 1s, transform 0.5s;
     }
-
     .window3 {
       width: 6.5%;
       height: 6.5%;
@@ -409,7 +448,7 @@ export default {
       background-image: url(../assets/garage3.png);
       background-repeat: no-repeat;
       background-position: left;
-      background-size: cover;
+      background-size: contain;
       left: 43.8%;
       bottom: 53%;
       z-index: 0;
@@ -429,14 +468,13 @@ export default {
       height: 3.9%;
       position: absolute;
       left: 53%;
-      top: 34%;
+      top: 33%;
       overflow: hidden;
       opacity: 1;
       transform: scale(1);
       transition: left 0.5s, transform 1s;
       z-index: 1;
       cursor: pointer;
-
       .car4 {
         width: 100%;
         height: 100%;
@@ -447,25 +485,23 @@ export default {
       }
     }
     .box4.active {
-      left: 60%;
+      left: 62%;
       transform: scale(0);
     }
-
     .box4.out {
       left: 53%;
       transform: scale(1);
       transition: left 1s, transform 0.5s;
     }
-
     .window4 {
-      width: 8%;
-      height: 13%;
+      width: 9%;
+      height: 15%;
       position: absolute;
       background-image: url(../assets/garage2.png);
       background-repeat: no-repeat;
       background-position: center;
-      background-size: cover;
-      left: 60.6%;
+      background-size: contain;
+      left: 61.6%;
       bottom: 56%;
       z-index: 0;
       cursor: pointer;
@@ -474,7 +510,7 @@ export default {
       width: 8%;
       height: 11%;
       position: absolute;
-      left: 60.6%;
+      left: 61.6%;
       bottom: 56%;
       z-index: 4;
       cursor: pointer;
@@ -491,7 +527,6 @@ export default {
       transition: left 0.5s, transform 1s;
       z-index: 1;
       cursor: pointer;
-
       .car5 {
         width: 100%;
         height: 100%;
@@ -502,16 +537,14 @@ export default {
       }
     }
     .box5.active {
-      left: 70.9%;
+      left: 72.9%;
       transform: scale(0);
     }
-
     .box5.out {
       left: 80%;
       transform: scale(1);
       transition: left 1s, transform 0.5s;
     }
-
     .window5 {
       width: 7.6%;
       height: 9%;
@@ -519,8 +552,8 @@ export default {
       background-image: url(../assets/garage1.png);
       background-repeat: no-repeat;
       background-position: center;
-      background-size: cover;
-      left: 70.9%;
+      background-size: contain;
+      left: 72.9%;
       /* top: 21.5%; */
       bottom: 48.6%;
       z-index: 0;
@@ -530,11 +563,19 @@ export default {
       width: 7.6%;
       height: 9%;
       position: absolute;
-      left: 70.9%;
+      left: 72.9%;
       bottom: 48.6%;
       z-index: 4;
       cursor: pointer;
     }
+    /* } */
+    /* } */
+  }
+}
+
+@media (max-width: 1920px) {
+  .desk {
+    background-size: 140% 100%;
   }
 }
 </style>

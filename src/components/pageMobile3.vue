@@ -221,7 +221,10 @@ export default {
     &__text {
       width: 100%;
       height: 24.95%;
-      background-color: #1d3f72;
+      background-image: url(../assets/back_btn.png);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       box-shadow: 0px 0px 16px gray;
       border-radius: 2px;
       z-index: 3;
@@ -257,7 +260,7 @@ export default {
     position: absolute;
     top: 1%;
     left: 2%;
-    z-index: 6;
+    z-index: 1001;
     cursor: pointer;
 
     .bar1,
