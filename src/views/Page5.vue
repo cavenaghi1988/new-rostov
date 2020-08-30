@@ -138,10 +138,10 @@ export default {
         },
         {
           id: 4,
-          day: 30,
+          day: 31,
           play: false,
-          begin: 9,
-          end: 12,
+          begin: 0,
+          end: 2,
           link: "https://www.youtube.com/embed/paXfJGUmku4",
           text: "Название вебинара № 4"
         },
@@ -304,17 +304,18 @@ export default {
     .window {
       width: 100%;
       height: 100%;
+      position: relative;
 
       .auto {
-        width: 11%;
-        height: 9%;
+        width: 100%;
+        height: 60%;
         background-image: url(../assets/car2.png);
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
         position: absolute;
-        top: 30%;
-        left: 16%;
+        top: -70%;
+        left: 2%;
         animation-name: car;
         animation-delay: 1s;
         animation-duration: 4s;
@@ -323,10 +324,10 @@ export default {
 
       @keyframes car {
         0% {
-          top: 30%;
+          top: -70%;
         }
         100% {
-          top: 40%;
+          top: -40%;
         }
       }
       .modal {
