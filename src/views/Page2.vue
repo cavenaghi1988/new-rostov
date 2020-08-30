@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <loader
-      v-if="loading"
+      v-if="load"
       object="#ff9633"
       color1="#ffffff"
       color2="#17fd3d"
@@ -35,58 +35,59 @@
           </router-link>
         </ul>
       </div>
-
-      <div
-        v-for="obj in objs"
-        :key="obj.id"
-        class="block"
-      >
+      <template v-if="loading">
         <div
-          v-if="
+          v-for="obj in objs"
+          :key="obj.id"
+          class="block"
+        >
+          <div
+            v-if="
             obj.day == time.c.day && obj.begin <= time.c.hour && obj.end > time.c.hour
               ? (obj.play = true)
               : (obj.play = false)
           "
-          v-on:click="see = true"
-          class="window"
-        >
-          <div class="modal"></div>
-          <div class="auto"></div>
-        </div>
-        <div
-          v-else
-          class="beb"
-          v-on:click="see = true"
-        ></div>
-        <div class="text">
-          <span>{{obj.text}}</span>
-        </div>
-        <transition
-          name="slide-fade"
-          mode="out-in"
-        >
-          <div
-            v-if="see && obj.play"
-            class="modal-mask"
+            v-on:click="see = true"
+            class="window"
           >
-            <div class="window">
-              <iframe
-                class="video"
-                :src="obj.link"
-                frameborder="0"
-                :class="{ loading: !iframeLoaded }"
-                @load="iframeLoad"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-              <div
-                class="close"
-                @click="close"
-              >close</div>
-            </div>
+            <div class="modal"></div>
+            <div class="auto"></div>
           </div>
-        </transition>
-      </div>
+          <div
+            v-else
+            class="beb"
+            v-on:click="see = true"
+          ></div>
+          <div class="text">
+            <span>{{obj.text}}</span>
+          </div>
+          <transition
+            name="slide-fade"
+            mode="out-in"
+          >
+            <div
+              v-if="see && obj.play"
+              class="modal-mask"
+            >
+              <div class="window">
+                <iframe
+                  class="video"
+                  :src="obj.link"
+                  frameborder="0"
+                  :class="{ loading: !iframeLoaded }"
+                  @load="iframeLoad"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+                <div
+                  class="close"
+                  @click="close"
+                >close</div>
+              </div>
+            </div>
+          </transition>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -99,7 +100,6 @@ export default {
   },
   data() {
     return {
-      loading: true,
       iframeLoad(e) {
         if (e.timeStamp < 10000) {
           this.iframeLoaded = true;
@@ -107,6 +107,7 @@ export default {
       },
       see: false,
       show: true,
+      load: true,
       objs: [
         {
           id: 1,
@@ -176,19 +177,21 @@ export default {
     };
   },
   created() {
-    this.loader();
     setInterval(() => {
       this.resize();
     }, 500);
   },
+  mounted() {
+    this.loader();
+  },
   computed: {
-    ...mapGetters(["time"]),
+    ...mapGetters(["time", "loading"]),
     ...mapActions(["times"])
   },
   methods: {
     loader() {
       setTimeout(() => {
-        this.loading = false;
+        this.load = false;
       }, 1000);
     },
     close() {

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <!-- <loader
-      v-if="!loading"
+    <loader
+      v-if="!loading "
       object="#ff9633"
       color1="#ffffff"
       color2="#17fd3d"
@@ -11,7 +11,7 @@
       objectbg="#999793"
       opacity="100"
       name="circular"
-    ></loader> -->
+    ></loader>
     <transition
       name="tray"
       mode="out-in"
@@ -24,11 +24,13 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
+  data() {
+    return {
+      load: false
+    };
+  },
   created() {
     this.res();
-  },
-  mounted() {
-    console.log("hkjh");
   },
   computed: {
     ...mapActions(["times"]),

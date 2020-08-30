@@ -10,7 +10,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     time: [],
-    loading: true
+    loading: false
   },
   getters: {
     time: state => state.time,
@@ -36,7 +36,7 @@ export default new Vuex.Store({
         commit("loading", true);
       } catch (err) {
         console.log(err);
-        commit("loading", true);
+        commit("loading", false);
       }
     },
   },

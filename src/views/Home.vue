@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <loader
-      v-if="loading"
+      v-if=" load"
       object="#ff9633"
       color1="#ffffff"
       color2="#17fd3d"
@@ -65,23 +65,29 @@
 
 <script>
 import Mobile from "../components/mobile.vue";
+import { mapGetters } from "vuex";
 export default {
   name: "Home",
   components: {
     Mobile
   },
   created() {
-    this.loader();
     setInterval(() => {
       this.resize();
-      this.bgResize();
     }, 500);
+  },
+
+  mounted() {
+    this.loader();
+    setInterval(() => {
+      this.bgResize();
+    });
   },
 
   data() {
     return {
       desk: true,
-      loading: true,
+      load: true,
       objs: [
         {
           block: "block1",
@@ -136,10 +142,13 @@ export default {
       ]
     };
   },
+  computed: {
+    ...mapGetters(["loading"])
+  },
   methods: {
     loader() {
       setTimeout(() => {
-        this.loading = false;
+        this.load = false;
       }, 1000);
     },
     getPage(select, link, tar) {
@@ -208,28 +217,31 @@ export default {
     window(select, trX, trY) {
       const city = document.querySelector(".city");
       const win = document.querySelector(select);
-      const image = { width: 2930, height: 1003 };
-      var target = { x: trX, y: trY };
 
-      let h = city.clientHeight;
-      let w = city.clientWidth;
+      if (city) {
+        const image = { width: 2930, height: 1003 };
+        var target = { x: trX, y: trY };
 
-      let xScale = w / image.width;
-      let yScale = h / image.height;
-      let scale;
-      let yOffset = 0;
-      let xOffset = 0;
+        let h = city.clientHeight;
+        let w = city.clientWidth;
 
-      if (xScale > yScale) {
-        scale = xScale;
-        yOffset = (h - image.height * scale) / 2;
-      } else {
-        scale = yScale;
-        xOffset = (w - image.width * scale) / 2;
+        let xScale = w / image.width;
+        let yScale = h / image.height;
+        let scale;
+        let yOffset = 0;
+        let xOffset = 0;
+
+        if (xScale > yScale) {
+          scale = xScale;
+          yOffset = (h - image.height * scale) / 2;
+        } else {
+          scale = yScale;
+          xOffset = (w - image.width * scale) / 2;
+        }
+
+        win.style.top = target.y * scale + yOffset + "px";
+        win.style.left = target.x * scale + xOffset + "px";
       }
-
-      win.style.top = target.y * scale + yOffset + "px";
-      win.style.left = target.x * scale + xOffset + "px";
     },
     bgResize() {
       this.window(".block1", 1005, 360);

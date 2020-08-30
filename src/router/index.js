@@ -1,13 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Page1 from "../views/Page1.vue";
-import Page2 from "../views/Page2.vue";
-import Page3 from "../views/Page3.vue";
-import Page4 from "../views/Page4.vue";
-import Page5 from "../views/Page5.vue";
+
 
 Vue.use(VueRouter);
+
+
 
 const routes = [{
     path: "/",
@@ -17,27 +15,27 @@ const routes = [{
   {
     path: "/page1",
     name: "Page1",
-    component: Page1
+    component: () => import( /* webpackChunkName: "Page1" */ "../views/Page1.vue")
   },
   {
     path: "/page2",
     name: "Page2",
-    component: Page2
+    component: () => import( /* webpackChunkName: "Page2" */ "../views/Page2.vue")
   },
   {
     path: "/page3",
     name: "Page3",
-    component: Page3
+    component: () => import( /* webpackChunkName: "Page3" */ "../views/Page3.vue")
   },
   {
     path: "/page4",
     name: "Page4",
-    component: Page4
+    component: () => import( /* webpackChunkName: "Page4" */ "../views/Page4.vue")
   },
   {
     path: "/page5",
     name: "Page5",
-    component: Page5
+    component: () => import( /* webpackChunkName: "Page5" */ "../views/Page5.vue")
   },
 
 ];
