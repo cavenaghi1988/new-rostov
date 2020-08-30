@@ -48,7 +48,7 @@
               : (obj.play = false)
           "
             v-on:click="see = true"
-            class="window"
+            class="wind"
           >
             <div class="modal"></div>
             <div class="auto"></div>
@@ -82,7 +82,10 @@
                 <div
                   class="close"
                   @click="close"
-                >close</div>
+                >
+                  <div class="link1"></div>
+                  <div class="link2"></div>
+                </div>
               </div>
             </div>
           </transition>
@@ -100,11 +103,7 @@ export default {
   },
   data() {
     return {
-      iframeLoad(e) {
-        if (e.timeStamp < 10000) {
-          this.iframeLoaded = true;
-        }
-      },
+      iframeLoaded: false,
       see: false,
       show: true,
       load: true,
@@ -193,6 +192,11 @@ export default {
       setTimeout(() => {
         this.load = false;
       }, 1000);
+    },
+    iframeLoad(e) {
+      if (e.timeStamp < 10000) {
+        this.iframeLoaded = true;
+      }
     },
     close() {
       this.see = false;
@@ -296,7 +300,7 @@ export default {
       font-size: 1.5rem;
     }
 
-    .window {
+    .wind {
       width: 100%;
       height: 100%;
       position: relative;
@@ -343,48 +347,65 @@ export default {
           transform: translateY(5%);
         }
       }
-      .modal-mask {
+    }
+    .modal-mask {
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: table;
+      transition: opacity 0.3s ease;
+
+      .window {
+        width: 50%;
+        height: 50vh;
+        background-color: black;
         position: fixed;
-        z-index: 0;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: table;
-        transition: opacity 0.3s ease;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
 
-        .window {
-          width: 50%;
-          height: 50vh;
-          background-color: black;
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
+        iframe {
+          width: 100%;
+          height: 100%;
+        }
+        .loading {
+          width: 100%;
+          height: 100%;
+          background-image: url(../assets/Pulse-1s-200px.svg);
+          background-position: center;
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+        .close {
+          width: 6%;
+          height: 14%;
+          color: #ffffff;
+          position: absolute;
+          top: -10%;
+          right: 0%;
+          cursor: pointer;
+          text-align: center;
+          font-size: 2rem;
 
-          iframe {
+          .line1 {
+            transform: rotate(-45deg) translate(0px, 6px);
             width: 100%;
-            height: 100%;
+            height: 3px;
+            background-color: #ffffff;
+            margin: 6px 0;
+            transition: 0.4s;
           }
-          .loading {
+          .line2 {
+            transform: rotate(45deg) translate(0px, -7px);
             width: 100%;
-            height: 100%;
-            background-image: url(../assets/Pulse-1s-200px.svg);
-            background-position: center;
-            background-size: contain;
-            background-repeat: no-repeat;
-          }
-          .close {
-            width: 10%;
-            height: 10%;
-            color: #ffffff;
-            position: absolute;
-            top: -10%;
-            right: 0%;
-            cursor: pointer;
-            text-align: center;
-            font-size: 2rem;
+            height: 3px;
+            background-color: #ffffff;
+            margin: 6px 0;
+            transition: 0.4s;
           }
         }
       }
@@ -398,9 +419,8 @@ export default {
 .slide-fade-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateX(10px);
+.slide-fade-enter,
+.slide-fade-leave-to {
   opacity: 0;
 }
 </style>

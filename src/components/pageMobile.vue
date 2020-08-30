@@ -94,11 +94,7 @@ export default {
   },
   data() {
     return {
-      iframeLoad(e) {
-        if (e.timeStamp < 10000) {
-          this.iframeLoaded = true;
-        }
-      },
+      iframeLoaded: true,
       see: false,
       show: false,
       menuObj: [
@@ -188,6 +184,11 @@ export default {
       bar2.classList.toggle("change");
       bar3.classList.toggle("change");
       menu.classList.toggle("show");
+    },
+    iframeLoad(e) {
+      if (e.timeStamp < 10000) {
+        this.iframeLoaded = true;
+      }
     },
     close() {
       this.see = false;
