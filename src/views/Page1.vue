@@ -111,7 +111,7 @@ export default {
       objs: [
         {
           id: 1,
-          day: 26,
+          day: 31,
           play: false,
           begin: 0,
           end: 1,
@@ -120,7 +120,7 @@ export default {
         },
         {
           id: 2,
-          day: 26,
+          day: 31,
           play: false,
           begin: 1,
           end: 6,
@@ -129,7 +129,7 @@ export default {
         },
         {
           id: 3,
-          day: 26,
+          day: 31,
           play: false,
           begin: 6,
           end: 9,
@@ -138,7 +138,7 @@ export default {
         },
         {
           id: 4,
-          day: 26,
+          day: 31,
           play: false,
           begin: 9,
           end: 12,
@@ -147,7 +147,7 @@ export default {
         },
         {
           id: 5,
-          day: 26,
+          day: 31,
           play: false,
           begin: 12,
           end: 15,
@@ -156,7 +156,7 @@ export default {
         },
         {
           id: 6,
-          day: 26,
+          day: 31,
           play: false,
           begin: 15,
           end: 18,
@@ -165,7 +165,7 @@ export default {
         },
         {
           id: 7,
-          day: 26,
+          day: 31,
           play: false,
           begin: 18,
           end: 21,
