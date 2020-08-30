@@ -26,7 +26,7 @@
       :height="224"
       :display="7"
       :space="200"
-      :startIndex="0"
+      :startIndex="indexScroll()"
     >
       <slide
         v-for="obj in objs"
@@ -75,7 +75,10 @@
           <div
             class="close"
             @click="close"
-          >close</div>
+          >
+            <div class="line1"></div>
+            <div class="line2"></div>
+          </div>
         </div>
       </div>
     </transition>
@@ -107,7 +110,7 @@ export default {
       objs: [
         {
           id: 1,
-          day: 27,
+          day: 30,
           play: false,
           begin: 0,
           end: 1,
@@ -116,7 +119,7 @@ export default {
         },
         {
           id: 2,
-          day: 27,
+          day: 30,
           play: false,
           begin: 1,
           end: 6,
@@ -125,7 +128,7 @@ export default {
         },
         {
           id: 3,
-          day: 27,
+          day: 30,
           play: false,
           begin: 6,
           end: 9,
@@ -134,7 +137,7 @@ export default {
         },
         {
           id: 4,
-          day: 27,
+          day: 30,
           play: false,
           begin: 9,
           end: 12,
@@ -143,7 +146,7 @@ export default {
         },
         {
           id: 5,
-          day: 27,
+          day: 30,
           play: false,
           begin: 12,
           end: 15,
@@ -152,7 +155,7 @@ export default {
         },
         {
           id: 6,
-          day: 27,
+          day: 30,
           play: false,
           begin: 15,
           end: 18,
@@ -161,7 +164,7 @@ export default {
         },
         {
           id: 7,
-          day: 27,
+          day: 30,
           play: false,
           begin: 18,
           end: 21,
@@ -188,20 +191,21 @@ export default {
     },
     close() {
       this.see = false;
+    },
+    indexScroll() {
+      var result = this.objs.find(o => {
+        return (
+          o.day == this.time.c.day &&
+          o.begin <= this.time.c.hour &&
+          o.end > this.time.c.hour
+        );
+      });
+      if (result) {
+        return result.id - 1;
+      } else {
+        return 0;
+      }
     }
-    // indexScroll() {
-    //   let res = 0;
-    //   for (key in this.objs) {
-    //     if (
-    //       this.objs[key][day] == time.c.day &&
-    //       this.objs[key][begin] <= time.c.hour &&
-    //       this.objs[key][end] > time.c.hour
-    //     ) {
-    //       res = this.objs[key][id];
-    //     }
-    //     return res;
-    //   }
-    // }
   }
 };
 </script>
@@ -385,16 +389,30 @@ export default {
         background-repeat: no-repeat;
       }
       .close {
-        width: 10%;
-        height: 10%;
+        width: 6%;
+        height: 14%;
         color: #ffffff;
         position: absolute;
         top: -10%;
         right: 2%;
         cursor: pointer;
-        text-align: center;
-        font-size: 2rem;
-        z-index: 200;
+
+        .line1 {
+          transform: rotate(-45deg) translate(0px, 6px);
+          width: 100%;
+          height: 3px;
+          background-color: #ffffff;
+          margin: 6px 0;
+          transition: 0.4s;
+        }
+        .line2 {
+          transform: rotate(45deg) translate(0px, -7px);
+          width: 100%;
+          height: 3px;
+          background-color: #ffffff;
+          margin: 6px 0;
+          transition: 0.4s;
+        }
       }
     }
   }

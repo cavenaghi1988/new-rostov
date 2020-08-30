@@ -32,32 +32,33 @@
         </ul>
       </div>
 
-      <!-- <div class="city">
-        <div class="block"> -->
+      <!-- <div class="block"> -->
+      <div class="city"> </div>
 
       <div
         v-for="(obj,i) in objs"
         :key="i"
         class="items"
       >
-        <div :class="obj.name1">
-          <div :class="obj.name2"></div>
+        <div :class="obj.block">
+          <div :class="obj.name1">
+            <div :class="obj.name2"></div>
+          </div>
+          <div
+            v-on:mouseover="obj.over"
+            v-on:mouseleave="obj.leave"
+            v-on:click="obj.click"
+            :class="obj.name4"
+          ></div>
+          <div
+            v-on:mouseover="obj.over"
+            v-on:mouseleave="obj.leave"
+            v-on:click="obj.click"
+            :class="obj.name3"
+          ></div>
         </div>
-        <div
-          v-on:mouseover="obj.over"
-          v-on:mouseleave="obj.leave"
-          v-on:click="obj.click"
-          :class="obj.name4"
-        ></div>
-        <div
-          v-on:mouseover="obj.over"
-          v-on:mouseleave="obj.leave"
-          v-on:click="obj.click"
-          :class="obj.name3"
-        ></div>
       </div>
-      <!-- </div>
-      </div> -->
+      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -73,6 +74,7 @@ export default {
     this.loader();
     setInterval(() => {
       this.resize();
+      this.bgResize();
     }, 500);
   },
 
@@ -82,6 +84,7 @@ export default {
       loading: true,
       objs: [
         {
+          block: "block1",
           name1: "box1",
           name2: "car1",
           name3: "visible1",
@@ -91,6 +94,7 @@ export default {
           click: this.cl1
         },
         {
+          block: "block2",
           name1: "box2",
           name2: "car2",
           name3: "visible2",
@@ -100,6 +104,7 @@ export default {
           click: this.cl2
         },
         {
+          block: "block3",
           name1: "box3",
           name2: "car3",
           name3: "visible3",
@@ -109,6 +114,7 @@ export default {
           click: this.cl3
         },
         {
+          block: "block4",
           name1: "box4",
           name2: "car4",
           name3: "visible4",
@@ -118,6 +124,7 @@ export default {
           click: this.cl4
         },
         {
+          block: "block5",
           name1: "box5",
           name2: "car5",
           name3: "visible5",
@@ -198,16 +205,39 @@ export default {
     mouseleave5() {
       this.getLeaveMouse(".box5");
     },
-    // bgResize() {
-    //   const size = document.querySelector("body");
-    //   const city = document.querySelector(".city");
+    window(select, trX, trY) {
+      const city = document.querySelector(".city");
+      const win = document.querySelector(select);
+      const image = { width: 2930, height: 1003 };
+      var target = { x: trX, y: trY };
 
-    //   let h = size.clientHeight;
-    //   let w = size.clientWidth;
+      let h = city.clientHeight;
+      let w = city.clientWidth;
 
-    //    city.style.width = (w / 1920) * 100 + "%";
-    //    city.style.height = (h / 1080) * 100 + "%";
-    // },
+      let xScale = w / image.width;
+      let yScale = h / image.height;
+      let scale;
+      let yOffset = 0;
+      let xOffset = 0;
+
+      if (xScale > yScale) {
+        scale = xScale;
+        yOffset = (h - image.height * scale) / 2;
+      } else {
+        scale = yScale;
+        xOffset = (w - image.width * scale) / 2;
+      }
+
+      win.style.top = target.y * scale + yOffset + "px";
+      win.style.left = target.x * scale + xOffset + "px";
+    },
+    bgResize() {
+      this.window(".block1", 1005, 360);
+      this.window(".block2", 1235, 600);
+      this.window(".block3", 1475, 445);
+      this.window(".block4", 1832, 364);
+      this.window(".block5", 2072, 404);
+    },
     resize() {
       const size = document.querySelector("body");
       if (size.clientWidth < 980) {
@@ -223,28 +253,32 @@ export default {
 .main {
   width: 100%;
   height: 100vh;
-  background-image: url(../assets/smoke_copy.png);
-  background-position: center bottom;
+  /* background-image: url(../assets/smoke_copy.png);
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  position: relative;
+  display: flex;
+  align-items: flex-end; */
 
   .desk {
     width: 100%;
     height: 100%;
-    min-width: 1200px;
-    min-height: 660px;
-    background-image: url(../assets/town.png);
-    background-position: center;
+    /* min-width: 1266px;
+    min-height: 720px;
+    max-width: 2560px;
+    max-height: 1440px;
+    margin: 0 auto;
+    background-image: url(../assets/city_new.png);
+    background-position: center bottom;
     background-repeat: no-repeat;
-    background-size: 150% 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    position: relative;
+    background-size: cover;
+    position: relative; */
+    display: flex;
+    align-items: flex-end;
 
     #nav {
       width: 100%;
+      height: 10%;
       position: absolute;
       top: 0%;
       display: flex;
@@ -284,291 +318,318 @@ export default {
       }
     }
 
-    /* .city {
+    .city {
       width: 100%;
       height: 90%;
-       min-width: 1280px;
-      min-height: 650px; 
-       max-width: 1920px;
-      max-height: 1003px; 
+      /* min-width: 1279px;
+      min-height: 719px; */
+      /* max-width: 2560px;
+      max-height: 1440px; */
+      margin: 0 auto;
       background-image: url(../assets/city_new.png);
-      background-position: center;
+      background-position: center bottom;
       background-repeat: no-repeat;
       background-size: cover;
-      position: fixed;
-      bottom: 0%;
-      left: 50%;
-      transform: translate(-50%);
-
-      .block {
-        width: 77%;
-        height: 29%;
-        position: fixed;
-        left: 20.5%;
-        top: 29%; */
-
-    .box1 {
-      width: 6%;
-      height: 5.6%;
-      position: absolute;
-      left: 14%;
-      top: 32%;
-      overflow: hidden;
-      opacity: 1;
-      transform: scale(1);
-      transition: left 0.5s, transform 1s;
-      z-index: 1;
-      cursor: pointer;
-      .car1 {
-        width: 100%;
-        height: 100%;
-        background-image: url(../assets/car1.png);
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-      }
+      /* position: relative;  */
     }
-    .box1.active {
+    .block1 {
+      width: 1%;
+      height: 1%;
+      position: absolute;
+      top: 31%;
       left: 19%;
-      transform: scale(0);
-    }
-    .box1.out {
-      left: 14%;
-      transform: scale(1);
-      transition: left 1s, transform 0.5s;
-    }
-    .window1 {
-      width: 3.4%;
-      height: 13.6%;
-      position: absolute;
-      background-image: url(../assets/garage5.png);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      left: 20.7%;
-      bottom: 56%;
-      z-index: 0;
-      cursor: pointer;
-    }
-    .visible1 {
-      width: 3.4%;
-      height: 13.6%;
-      position: absolute;
-      left: 20.7%;
-      bottom: 56%;
-      z-index: 4;
-      cursor: pointer;
-    }
-    .box2 {
-      width: 9.5%;
-      height: 9.8%;
-      position: absolute;
-      left: 24.6%;
-      top: 47%;
-      overflow: hidden;
-      opacity: 1;
-      transform: scale(1);
-      transition: left 0.5s, transform 1s;
-      z-index: 1;
-      cursor: pointer;
-      .car2 {
-        width: 100%;
-        height: 100%;
-        background-image: url(../assets/car2.png);
+
+      .box1 {
+        width: 450%;
+        height: 950%;
+        position: absolute;
+        left: -590%;
+        top: -229%;
+        overflow: hidden;
+        opacity: 1;
+        transform: scale(1);
+        transition: left 0.5s, transform 1s;
+        z-index: 1;
+        cursor: pointer;
+        .car1 {
+          width: 100%;
+          height: 100%;
+          background-image: url(../assets/car1.png);
+          background-position: center;
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+      }
+      .box1.active {
+        left: -50%;
+        transform: scale(0);
+      }
+      .box1.out {
+        left: -590%;
+        transform: scale(1);
+        transition: left 1s, transform 0.5s;
+      }
+      .window1 {
+        width: 600%;
+        height: 1150%;
+        position: absolute;
+        background-image: url(../assets/garage5.png);
+        background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        background-repeat: no-repeat;
+        right: -355%;
+        bottom: -600%;
+        z-index: 0;
+        cursor: pointer;
+      }
+      .visible1 {
+        width: 600%;
+        height: 1000%;
+        position: absolute;
+        right: -380%;
+        bottom: -600%;
+        z-index: 4;
+        cursor: pointer;
       }
     }
-    .box2.active {
-      left: 31%;
-      transform: scale(0);
-    }
-    .box2.out {
-      left: 24.6%;
-      transform: scale(1);
-      transition: left 1s, transform 0.5s;
-    }
-    .window2 {
-      width: 6%;
-      height: 6.7%;
+    .block2 {
+      width: 0.1%;
+      height: 0.1%;
       position: absolute;
-      background-image: url(../assets/garage4.png);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      left: 31.9%;
-      bottom: 44.9%;
-      z-index: 0;
-      cursor: pointer;
-    }
-    .visible2 {
-      width: 6%;
-      height: 6.7%;
-      position: absolute;
-      left: 31.4%;
-      bottom: 44.9%;
-      z-index: 4;
-      cursor: pointer;
-    }
-    .box3 {
-      width: 6.6%;
-      height: 4.6%;
-      position: absolute;
-      left: 53%;
-      top: 41%;
-      overflow: hidden;
-      opacity: 1;
-      transform: scale(1);
-      transition: left 0.5s, transform 1s;
-      z-index: 1;
-      cursor: pointer;
-      .car3 {
-        width: 100%;
-        height: 100%;
-        background-image: url(../assets/car3.png);
+      top: 31%;
+      left: 19%;
+
+      .box2 {
+        width: 10000%;
+        height: 13000%;
+        position: absolute;
+        left: -8000%;
+        top: -10000%;
+        overflow: hidden;
+        opacity: 1;
+        transform: scale(1);
+        transition: left 0.5s, transform 1s;
+        z-index: 1;
+        cursor: pointer;
+
+        .car2 {
+          width: 100%;
+          height: 100%;
+          background-image: url(../assets/car2.png);
+          background-position: center;
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+      }
+      .box2.active {
+        left: -1500%;
+        transform: scale(0);
+      }
+      .box2.out {
+        left: -8000%;
+        transform: scale(1);
+        transition: left 1s, transform 0.5s;
+      }
+      .window2 {
+        width: 6000%;
+        height: 10000%;
+        position: absolute;
+        background-image: url(../assets/garage4.png);
+        background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        background-repeat: no-repeat;
+        left: -200%;
+        bottom: -800%;
+        z-index: 0;
+        cursor: pointer;
+      }
+      .visible2 {
+        width: 6000%;
+        height: 10000%;
+        position: absolute;
+        left: -200%;
+        bottom: -800%;
+        z-index: 4;
+        cursor: pointer;
       }
     }
-    .box3.active {
-      left: 44%;
-      transform: scale(0);
-    }
-    .box3.out {
-      left: 53%;
-      transform: scale(1);
-      transition: left 1s, transform 0.5s;
-    }
-    .window3 {
-      width: 6.5%;
-      height: 6.5%;
+    .block3 {
+      width: 1%;
+      height: 1%;
       position: absolute;
-      background-image: url(../assets/garage3.png);
-      background-repeat: no-repeat;
-      background-position: left;
-      background-size: contain;
-      left: 43.8%;
-      bottom: 53%;
-      z-index: 0;
-      cursor: pointer;
+      top: 31%;
+      left: 19%;
+      .box3 {
+        width: 450%;
+        height: 950%;
+        position: absolute;
+        left: 800%;
+        top: -350%;
+        overflow: hidden;
+        opacity: 1;
+        transform: scale(1);
+        transition: left 0.5s, transform 1s;
+        z-index: 1;
+        cursor: pointer;
+        .car3 {
+          width: 100%;
+          height: 100%;
+          background-image: url(../assets/car3.png);
+          background-position: center;
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+      }
+      .box3.active {
+        left: 0%;
+        transform: scale(0);
+      }
+      .box3.out {
+        left: 800%;
+        transform: scale(1);
+        transition: left 1s, transform 0.5s;
+      }
+      .window3 {
+        width: 800%;
+        height: 1000%;
+        position: absolute;
+        background-image: url(../assets/garage3.png);
+        background-repeat: no-repeat;
+        background-position: left;
+        background-size: contain;
+        left: -50%;
+        bottom: -540%;
+        z-index: 0;
+        cursor: pointer;
+      }
+      .visible3 {
+        width: 800%;
+        height: 1000%;
+        position: absolute;
+        left: -50%;
+        bottom: -540%;
+        z-index: 4;
+        cursor: pointer;
+      }
     }
-    .visible3 {
-      width: 6.5%;
-      height: 6.5%;
+    .block4 {
+      width: 1%;
+      height: 1%;
       position: absolute;
-      left: 43.8%;
-      bottom: 53%;
-      z-index: 4;
-      cursor: pointer;
-    }
-    .box4 {
-      width: 6.5%;
-      height: 3.9%;
-      position: absolute;
-      left: 53%;
-      top: 33%;
-      overflow: hidden;
-      opacity: 1;
-      transform: scale(1);
-      transition: left 0.5s, transform 1s;
-      z-index: 1;
-      cursor: pointer;
-      .car4 {
-        width: 100%;
-        height: 100%;
-        background-image: url(../assets/car4.png);
+      top: 31%;
+      left: 19%;
+      .box4 {
+        width: 450%;
+        height: 950%;
+        position: absolute;
+        left: -630%;
+        top: -270%;
+        overflow: hidden;
+        opacity: 1;
+        transform: scale(1);
+        transition: left 0.5s, transform 1s;
+        z-index: 1;
+        cursor: pointer;
+        .car4 {
+          width: 100%;
+          height: 100%;
+          background-image: url(../assets/car4.png);
+          background-position: center;
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+      }
+      .box4.active {
+        left: 50%;
+        transform: scale(0);
+      }
+      .box4.out {
+        left: -630%;
+        transform: scale(1);
+        transition: left 1s, transform 0.5s;
+      }
+      .window4 {
+        width: 900%;
+        height: 1300%;
+        position: absolute;
+        background-image: url(../assets/garage2.png);
+        background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        background-repeat: no-repeat;
+        left: 14.6%;
+        bottom: -1000%;
+        z-index: 0;
+        cursor: pointer;
+      }
+      .visible4 {
+        width: 900%;
+        height: 1300%;
+        position: absolute;
+        left: 14.6%;
+        bottom: -1000%;
+        z-index: 4;
+        cursor: pointer;
       }
     }
-    .box4.active {
-      left: 62%;
-      transform: scale(0);
-    }
-    .box4.out {
-      left: 53%;
-      transform: scale(1);
-      transition: left 1s, transform 0.5s;
-    }
-    .window4 {
-      width: 9%;
-      height: 15%;
+    .block5 {
+      width: 1%;
+      height: 1%;
       position: absolute;
-      background-image: url(../assets/garage2.png);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      left: 61.6%;
-      bottom: 56%;
-      z-index: 0;
-      cursor: pointer;
-    }
-    .visible4 {
-      width: 8%;
-      height: 11%;
-      position: absolute;
-      left: 61.6%;
-      bottom: 56%;
-      z-index: 4;
-      cursor: pointer;
-    }
-    .box5 {
-      width: 6.5%;
-      height: 5%;
-      position: absolute;
-      left: 80%;
-      top: 44.5%;
-      overflow: hidden;
-      opacity: 1;
-      transform: scale(1);
-      transition: left 0.5s, transform 1s;
-      z-index: 1;
-      cursor: pointer;
-      .car5 {
-        width: 100%;
-        height: 100%;
-        background-image: url(../assets/car5.png);
+      top: 31%;
+      left: 19%;
+      .box5 {
+        width: 450%;
+        height: 950%;
+        position: absolute;
+        left: 840%;
+        top: -171%;
+        overflow: hidden;
+        opacity: 1;
+        transform: scale(1);
+        transition: left 0.5s, transform 1s;
+        z-index: 1;
+        cursor: pointer;
+        .car5 {
+          width: 100%;
+          height: 100%;
+          background-image: url(../assets/car5.png);
+          background-position: center;
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+      }
+      .box5.active {
+        left: 40%;
+        transform: scale(0);
+      }
+      .box5.out {
+        left: 840%;
+        transform: scale(1);
+        transition: left 1s, transform 0.5s;
+      }
+      .window5 {
+        width: 850%;
+        height: 1000%;
+        position: absolute;
+        background-image: url(../assets/garage1.png);
+        background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        background-repeat: no-repeat;
+        left: -51%;
+        bottom: -641%;
+        z-index: 0;
+        cursor: pointer;
+      }
+      .visible5 {
+        width: 850%;
+        height: 1000%;
+        position: absolute;
+        left: -51%;
+        bottom: -641%;
+        z-index: 4;
+        cursor: pointer;
       }
     }
-    .box5.active {
-      left: 72.9%;
-      transform: scale(0);
-    }
-    .box5.out {
-      left: 80%;
-      transform: scale(1);
-      transition: left 1s, transform 0.5s;
-    }
-    .window5 {
-      width: 7.6%;
-      height: 9%;
-      position: absolute;
-      background-image: url(../assets/garage1.png);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      left: 72.9%;
-      /* top: 21.5%; */
-      bottom: 48.6%;
-      z-index: 0;
-      cursor: pointer;
-    }
-    .visible5 {
-      width: 7.6%;
-      height: 9%;
-      position: absolute;
-      left: 72.9%;
-      bottom: 48.6%;
-      z-index: 4;
-      cursor: pointer;
-    }
-    /* } */
     /* } */
   }
 }

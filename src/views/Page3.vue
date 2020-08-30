@@ -46,9 +46,12 @@
               ? (obj.play = true)
               : (obj.play = false)
           "
-          class="modal"
           v-on:click="see = true"
-        ></div>
+          class="window"
+        >
+          <div class="modal"></div>
+          <div class="auto"></div>
+        </div>
         <div
           v-else
           class="beb"
@@ -289,66 +292,95 @@ export default {
       font-size: 1.5rem;
     }
 
-    .modal {
+    .window {
       width: 100%;
       height: 100%;
-      background-image: url(../assets/play.png);
-      background-position: center;
-      background-size: contain;
-      background-repeat: no-repeat;
-      transition: transform 1s;
-      cursor: pointer;
 
-      &:hover {
-        transform: scale(0.9);
+      .auto {
+        width: 11%;
+        height: 9%;
+        background-image: url(../assets/car2.png);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 30%;
+        left: 16%;
+        animation-name: car;
+        animation-delay: 1s;
+        animation-duration: 4s;
+        animation-fill-mode: forwards;
       }
 
-      &:active {
-        transform: translateY(5%);
+      @keyframes car {
+        0% {
+          top: 30%;
+        }
+        100% {
+          top: 40%;
+        }
       }
-    }
-    .modal-mask {
-      position: fixed;
-      z-index: 0;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: table;
-      transition: opacity 0.3s ease;
+      .modal {
+        width: 100%;
+        height: 100%;
+        background-image: url(../assets/play.png);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        transition: transform 1s;
+        cursor: pointer;
 
-      .window {
-        width: 50%;
-        height: 50vh;
-        background-color: black;
+        &:hover {
+          transform: scale(0.9);
+        }
+
+        &:active {
+          transform: translateY(5%);
+        }
+      }
+      .modal-mask {
         position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        z-index: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: table;
+        transition: opacity 0.3s ease;
 
-        iframe {
-          width: 100%;
-          height: 100%;
-        }
-        .loading {
-          width: 100%;
-          height: 100%;
-          background-image: url(../assets/Pulse-1s-200px.svg);
-          background-position: center;
-          background-size: contain;
-          background-repeat: no-repeat;
-        }
-        .close {
-          width: 10%;
-          height: 10%;
-          color: #ffffff;
-          position: absolute;
-          top: -10%;
-          right: 0%;
-          cursor: pointer;
-          text-align: center;
-          font-size: 2rem;
+        .window {
+          width: 50%;
+          height: 50vh;
+          background-color: black;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          iframe {
+            width: 100%;
+            height: 100%;
+          }
+          .loading {
+            width: 100%;
+            height: 100%;
+            background-image: url(../assets/Pulse-1s-200px.svg);
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+          .close {
+            width: 10%;
+            height: 10%;
+            color: #ffffff;
+            position: absolute;
+            top: -10%;
+            right: 0%;
+            cursor: pointer;
+            text-align: center;
+            font-size: 2rem;
+          }
         }
       }
     }
