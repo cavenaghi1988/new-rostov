@@ -215,7 +215,7 @@ export default {
       this.getLeaveMouse(".box5");
     },
     window(select, trX, trY) {
-      const city = document.querySelector(".city");
+      const city = document.querySelector(".desk");
       const win = document.querySelector(select);
 
       if (city) {
@@ -274,7 +274,7 @@ export default {
 
   .desk {
     width: 100%;
-    height: 100%;
+    height: 90%;
     /* min-width: 1266px;
     min-height: 720px;
     max-width: 2560px;
@@ -332,14 +332,16 @@ export default {
 
     .city {
       width: 100%;
-      height: 90%;
+      height: 100%;
+      /* max-width: 2930px;
+      max-height: 1173px; */
       /* min-width: 1279px;
       min-height: 719px; */
       /* max-width: 2560px;
       max-height: 1440px; */
-      /* margin: 0 auto; */
+      margin: 0 auto;
       background-image: url(../assets/cityFront-min.png);
-      background-position: center top;
+      background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
       /* position: relative;  */

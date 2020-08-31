@@ -72,6 +72,10 @@ export default {
   .mobile {
     width: 100%;
     height: 100vh;
+    background-image: url(../assets/smoke_copy.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center bottom;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -111,7 +115,6 @@ export default {
         justify-content: center;
         align-items: center;
         color: #ffffff;
-        margin-top: 4px;
 
         &:last-child {
           border-bottom: none;
@@ -128,8 +131,8 @@ export default {
 
     .link {
       width: 100%;
-      height: 15%;
-      margin-top: -10px;
+      height: 11%;
+      margin-top: -8px;
     }
 
     .btn {
