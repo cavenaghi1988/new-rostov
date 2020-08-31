@@ -244,11 +244,11 @@ export default {
       }
     },
     bgResize() {
-      this.window(".block1", 845, 580);
-      this.window(".block2", 1061, 800);
-      this.window(".block3", 1300, 620);
-      this.window(".block4", 1660, 520);
-      this.window(".block5", 1897, 660);
+      this.window(".block1", 845, 440);
+      this.window(".block2", 1061, 655);
+      this.window(".block3", 1300, 497);
+      this.window(".block4", 1660, 390);
+      this.window(".block5", 1897, 520);
     },
     resize() {
       const size = document.querySelector("body");
@@ -274,7 +274,7 @@ export default {
 
   .desk {
     width: 100%;
-    height: 90%;
+    height: 100%;
     /* min-width: 1266px;
     min-height: 720px;
     max-width: 2560px;
@@ -341,7 +341,7 @@ export default {
       max-height: 1440px; */
       margin: 0 auto;
       background-image: url(../assets/cityFront-min.png);
-      background-position: center;
+      background-position: center bottom;
       background-repeat: no-repeat;
       background-size: cover;
       /* position: relative;  */
@@ -571,7 +571,7 @@ export default {
         background-position: center;
         background-size: contain; */
         left: 14.6%;
-        bottom: -1000%;
+        bottom: -900%;
         z-index: 0;
         cursor: pointer;
       }
@@ -580,7 +580,7 @@ export default {
         height: 1300%;
         position: absolute;
         left: 14.6%;
-        bottom: -1000%;
+        bottom: -900%;
         z-index: 4;
         cursor: pointer;
       }
