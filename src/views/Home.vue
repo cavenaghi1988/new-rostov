@@ -33,32 +33,32 @@
       </div>
 
       <!-- <div class="block"> -->
-      <div class="city"> </div>
+      <div class="city">
 
-      <div
-        v-for="(obj,i) in objs"
-        :key="i"
-        class="items"
-      >
-        <div :class="obj.block">
-          <div :class="obj.name1">
-            <div :class="obj.name2"></div>
+        <div
+          v-for="(obj,i) in objs"
+          :key="i"
+          class="items"
+        >
+          <div :class="obj.block">
+            <div :class="obj.name1">
+              <div :class="obj.name2"></div>
+            </div>
+            <div
+              v-on:mouseover="obj.over"
+              v-on:mouseleave="obj.leave"
+              v-on:click="obj.click"
+              :class="obj.name4"
+            ></div>
+            <div
+              v-on:mouseover="obj.over"
+              v-on:mouseleave="obj.leave"
+              v-on:click="obj.click"
+              :class="obj.name3"
+            ></div>
           </div>
-          <div
-            v-on:mouseover="obj.over"
-            v-on:mouseleave="obj.leave"
-            v-on:click="obj.click"
-            :class="obj.name4"
-          ></div>
-          <div
-            v-on:mouseover="obj.over"
-            v-on:mouseleave="obj.leave"
-            v-on:click="obj.click"
-            :class="obj.name3"
-          ></div>
         </div>
       </div>
-      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -264,7 +264,7 @@ export default {
 <style lang="scss" scoped>
 .main {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   /* background-image: url(../assets/smoke_copy.png);
   background-position: center;
   background-size: cover;
@@ -275,6 +275,7 @@ export default {
   .desk {
     width: 100%;
     height: 100%;
+    position: fixed;
     /* min-width: 1266px;
     min-height: 720px;
     max-width: 2560px;
@@ -339,7 +340,7 @@ export default {
       min-height: 719px; */
       /* max-width: 2560px;
       max-height: 1440px; */
-      margin: 0 auto;
+      margin: 0% auto;
       background-image: url(../assets/cityFront-min.png);
       background-position: center bottom;
       background-repeat: no-repeat;
@@ -349,7 +350,7 @@ export default {
     .block1 {
       width: 1%;
       height: 1%;
-      position: absolute;
+      position: fixed;
       top: 31%;
       left: 19%;
 
