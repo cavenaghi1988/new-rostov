@@ -412,11 +412,11 @@ export default {
       left: 19%;
 
       .box2 {
-        width: 10000%;
-        height: 13000%;
+        width: 6000%;
+        height: 10000%;
         position: absolute;
         left: -8000%;
-        top: -10000%;
+        top: -8000%;
         overflow: hidden;
         opacity: 1;
         transform: scale(1);
@@ -427,14 +427,14 @@ export default {
         .car2 {
           width: 100%;
           height: 100%;
-          background-image: url(../assets/car2.png);
+          background-image: url(../assets/car5.png);
           background-position: center;
           background-size: contain;
           background-repeat: no-repeat;
         }
       }
       .box2.active {
-        left: -1500%;
+        left: -1000%;
         transform: scale(0);
       }
       .box2.out {
@@ -590,11 +590,11 @@ export default {
       top: 31%;
       left: 19%;
       .box5 {
-        width: 450%;
-        height: 950%;
+        width: 800%;
+        height: 1200%;
         position: absolute;
-        left: 840%;
-        top: -171%;
+        left: 700%;
+        top: -340%;
         overflow: hidden;
         opacity: 1;
         transform: scale(1);
@@ -604,7 +604,7 @@ export default {
         .car5 {
           width: 100%;
           height: 100%;
-          background-image: url(../assets/car5.png);
+          background-image: url(../assets/car2.png);
           background-position: center;
           background-size: contain;
           background-repeat: no-repeat;
@@ -615,7 +615,7 @@ export default {
         transform: scale(0);
       }
       .box5.out {
-        left: 840%;
+        left: 700%;
         transform: scale(1);
         transition: left 1s, transform 0.5s;
       }

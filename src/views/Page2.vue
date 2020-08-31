@@ -137,7 +137,7 @@ export default {
         },
         {
           id: 4,
-          day: 27,
+          day: 31,
           play: false,
           begin: 9,
           end: 12,
@@ -155,7 +155,7 @@ export default {
         },
         {
           id: 6,
-          day: 27,
+          day: 31,
           play: false,
           begin: 15,
           end: 18,
@@ -307,8 +307,8 @@ export default {
 
       .auto {
         width: 100%;
-        height: 60%;
-        background-image: url(../assets/car2.png);
+        height: 30%;
+        background-image: url(../assets/car5.png);
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;

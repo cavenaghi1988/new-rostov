@@ -326,8 +326,8 @@ export default {
 
       .auto {
         width: 100%;
-        height: 60%;
-        background-image: url(../assets/car2.png);
+        height: 30%;
+        background-image: url(../assets/car1.png);
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;

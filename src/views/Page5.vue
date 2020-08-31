@@ -139,8 +139,8 @@ export default {
           id: 4,
           day: 31,
           play: false,
-          begin: 0,
-          end: 2,
+          begin: 9,
+          end: 12,
           link: "https://www.youtube.com/embed/paXfJGUmku4",
           text: "Название вебинара № 4"
         },
