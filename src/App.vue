@@ -59,8 +59,8 @@ body {
 #app {
   width: 100%;
   height: 100vh;
-  background-image: url(assets/smoke_copy.png);
-  background-position: center;
+  background-image: url(assets/background_new.png);
+  background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
 }

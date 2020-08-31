@@ -214,6 +214,10 @@ export default {
 .mobile {
   width: 100%;
   height: 100vh;
+  background-image: url(../assets/light_mobile.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;

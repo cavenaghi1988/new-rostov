@@ -129,6 +129,7 @@ export default {
     .link {
       width: 100%;
       height: 15%;
+      margin-top: -10px;
     }
 
     .btn {
